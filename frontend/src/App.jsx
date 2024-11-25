@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import CategoryPosts from "./pages/CategoryPosts";
 import Post from "./pages/Post";
-export const url = "http://localhost:8000";
+export const url = "https://shikhonbd-backend.onrender.com";
 
 const App = () => {
   return (
