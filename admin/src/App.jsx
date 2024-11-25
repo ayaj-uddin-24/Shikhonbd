@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
-export const url = "http://localhost:8000";
+export const url = "https://shikhonbd-backend.onrender.com";
 import { ToastContainer } from "react-toastify";
 import "../node_modules/react-toastify/dist/ReactToastify.min.css";
 import { BlogContext } from "./contexts/BlogContext";
