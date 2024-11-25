@@ -1,0 +1,38 @@
+{
+  "name": "shikhonbd",
+  "version": "1.0.0",
+  "description": "this is a mern stack blog website",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayaj-uddin-24/Shikhonbd.git"
+  },
+  "keywords": [
+    "mongodb",
+    "express",
+    "node",
+    "react",
+    "cloudinary"
+  ],
+  "author": "ayaj uddin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ayaj-uddin-24/Shikhonbd/issues"
+  },
+  "homepage": "https://github.com/ayaj-uddin-24/Shikhonbd#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.7"
+  }
+}
