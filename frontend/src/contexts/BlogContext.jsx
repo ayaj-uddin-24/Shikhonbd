@@ -7,6 +7,7 @@ export const BlogContext = createContext(null);
 const BlogContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const getPosts = async () => {
     const res = await axios.get(`${url}/api/post/get-post`);
@@ -20,7 +21,14 @@ const BlogContextProvider = ({ children }) => {
     getPosts();
   }, []);
 
-  const value = { posts, setPosts, searchTerm, setSearchTerm };
+  const value = {
+    posts,
+    setPosts,
+    searchTerm,
+    setSearchTerm,
+    loading,
+    setLoading,
+  };
 
   return <BlogContext.Provider value={value}>{children}</BlogContext.Provider>;
 };

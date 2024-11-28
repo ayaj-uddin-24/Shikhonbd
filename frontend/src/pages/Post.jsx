@@ -1,17 +1,57 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom"; // Import useNavigate
 import { BlogContext } from "../contexts/BlogContext";
+import Loading from "../components/Loading";
+import {
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  PinterestIcon,
+  PinterestShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
+import PostItem from "../components/PostItem";
 
 const Post = () => {
-  const { posts } = useContext(BlogContext);
+  const { posts, loading, setLoading } = useContext(BlogContext);
   const { title } = useParams();
-  const [postDetails, setPostDetails] = useState([]);
+  const [postDetails, setPostDetails] = useState(null);
+  const [relatedPosts, setRelatedPosts] = useState([]);
   const decodeTitle = decodeURIComponent(title);
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
   useEffect(() => {
     const post = posts.find((p) => p.title === decodeTitle);
     setPostDetails(post);
+
+    if (post) {
+      const related = posts.filter(
+        (p) => p.category === post.category && p._id !== post._id
+      );
+      setRelatedPosts(related);
+    }
+  }, [posts, decodeTitle]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, [posts]);
+
+  const handleRelatedPostClick = () => {
+    // navigate(`/post/${postTitle}`);
+    window.scrollTo(0, 0); // Scroll to the top
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   if (!postDetails) {
     return (
@@ -23,9 +63,11 @@ const Post = () => {
     );
   }
 
+  const shareUrl = window.location.href;
+  const titleText = postDetails.title;
+
   return (
     <div className="container mx-auto p-6">
-      {/* Post Image */}
       {postDetails.imageUrl && (
         <img
           src={postDetails.imageUrl}
@@ -33,11 +75,7 @@ const Post = () => {
           className="w-full rounded-lg mb-5"
         />
       )}
-
-      {/* Post Title */}
       <h1 className="text-3xl font-bold text-gray-800">{postDetails.title}</h1>
-
-      {/* Metadata */}
       <div className="mt-2 mb-4 text-sm text-gray-500">
         <p>
           Category: <span className="font-medium">{postDetails.category}</span>
@@ -45,18 +83,59 @@ const Post = () => {
         <p>Published on: {new Date(postDetails.createdAt).toLocaleString()}</p>
       </div>
 
-      {/* Post Content */}
       <div
         className="text-gray-700 leading-7"
         dangerouslySetInnerHTML={{ __html: postDetails.content }}
       ></div>
 
-      {/* Popular Badge */}
-      {postDetails.popular && (
-        <span className="inline-block mt-4 bg-blue-500 text-white text-sm font-semibold py-1 px-3 rounded">
-          Popular Post
-        </span>
-      )}
+      <div className="mt-6">
+        <span className="font-medium text-gray-700 block mb-2">Share:</span>
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+          <FacebookShareButton url={shareUrl} quote={titleText}>
+            <FacebookIcon size={40} round />
+          </FacebookShareButton>
+          <TwitterShareButton url={shareUrl} title={titleText}>
+            <TwitterIcon size={40} round />
+          </TwitterShareButton>
+          <PinterestShareButton
+            url={shareUrl}
+            media={postDetails.imageUrl || ""}
+            description={titleText}
+          >
+            <PinterestIcon size={40} round />
+          </PinterestShareButton>
+          <WhatsappShareButton url={shareUrl} title={titleText}>
+            <WhatsappIcon size={40} round />
+          </WhatsappShareButton>
+          <EmailShareButton url={shareUrl} subject={titleText}>
+            <EmailIcon size={40} round />
+          </EmailShareButton>
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <h2 className="text-2xl font-bold mb-5">Related Posts</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {relatedPosts.length > 0 ? (
+            relatedPosts.map((post) => (
+              <div
+                key={post._id}
+                onClick={ handleRelatedPostClick()}
+              >
+                <PostItem
+                  id={post._id}
+                  imageUrl={post.imageUrl}
+                  title={post.title}
+                  content={post.content}
+                  createdAt={post.createdAt}
+                />
+              </div>
+            ))
+          ) : (
+            <p>No related posts available here</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

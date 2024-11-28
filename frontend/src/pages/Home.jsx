@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TopPosts from "../components/TopPosts";
 import LatestPosts from "../components/LatestPosts";
 import JobNewsSection from "../components/JobNewsSection";
@@ -7,15 +7,55 @@ import Search from "../components/Search";
 import { BlogContext } from "../contexts/BlogContext";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
+import Loading from "../components/Loading";
 
 const Home = () => {
-  const { posts, searchTerm } = useContext(BlogContext);
+  const { posts, searchTerm, loading, setLoading } = useContext(BlogContext);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Simulate data fetching delay (replace with actual fetching logic if needed)
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Simulated delay of 2 seconds
+
+    return () => clearTimeout(timer); // Cleanup timer
+  }, [posts]); // Re-run effect when posts change
+
+  // Show or hide the button based on scroll position
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 250) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+    };
+  }, []);
+
+  // Scroll to the top of the page
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const filteredPosts = posts.filter(
     (post) =>
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.content.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (loading) {
+    // Render loader when data is still loading
+    return <Loading />;
+  }
 
   return (
     <div>
@@ -64,6 +104,16 @@ const Home = () => {
           <JobNewsSection />
           <ScienceNewsSection />
         </>
+      )}
+
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-5 right-5 bg-blue-600 text-white w-10 h-10 text-2xl rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300"
+          aria-label="Back to top"
+        >
+          ↑
+        </button>
       )}
     </div>
   );

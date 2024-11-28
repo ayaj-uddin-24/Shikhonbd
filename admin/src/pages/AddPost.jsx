@@ -118,6 +118,8 @@ const AddPost = () => {
           <option value="শিক্ষাক্রম">শিক্ষাক্রম</option>
           <option value="প্রযুক্তি">প্রযুক্তি</option>
           <option value="বিজ্ঞান">বিজ্ঞান</option>
+          <option value="Job Solution">Job Solution</option>
+          <option value="Academic Solution">Academic Solution</option>
         </select>
 
         <div>

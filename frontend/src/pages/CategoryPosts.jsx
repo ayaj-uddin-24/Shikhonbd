@@ -2,22 +2,47 @@ import React, { useContext, useEffect, useState } from "react";
 import { BlogContext } from "../contexts/BlogContext";
 import { Link, useParams } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
+import Loading from "../components/Loading";
 
 const CategoryPosts = () => {
   const { category } = useParams();
-  const { posts } = useContext(BlogContext);
+  const { posts, loading, setLoading } = useContext(BlogContext);
   const [filteredPosts, setFilteredPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 10;
 
   useEffect(() => {
     const filterPosts = posts.filter((post) => post.category === category);
     setFilteredPosts(filterPosts);
   }, [posts, category]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [posts]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+
   return (
     <div className="bg-white text-black">
       <h1 className="text-3xl font-bold p-5 mt-5">{category}</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-5">
-        {filteredPosts.map((article) => (
+        {currentPosts.map((article) => (
           <Link
             to={`/post/${encodeURIComponent(article.title)}`}
             key={article._id}
@@ -44,6 +69,23 @@ const CategoryPosts = () => {
               </button>
             </div>
           </Link>
+        ))}
+      </div>
+
+      {/* Pagination */}
+      <div className="flex justify-center items-center mt-6 space-x-2">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            className={`px-4 py-2 rounded-md text-sm font-medium ${
+              currentPage === index + 1
+                ? "bg-blue-600 text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
+          >
+            {index + 1}
+          </button>
         ))}
       </div>
     </div>

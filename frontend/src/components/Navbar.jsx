@@ -4,167 +4,231 @@ import { IoMdArrowDropdown } from "react-icons/io";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const [jobMenuVisible, setJobMenuVisible] = useState(false);
-  const [jobSubmenuVisible, setJobSubmenuVisible] = useState(false);
+  const [dropdowns, setDropdowns] = useState({
+    job: false,
+    curriculum: false,
+    mobileJob: false,
+    mobileCurriculum: false,
+  });
+
+  const toggleDropdown = (menu) => {
+    setDropdowns((prev) => ({
+      job: false,
+      curriculum: false,
+      mobileJob: false,
+      mobileCurriculum: false,
+      [menu]: !prev[menu],
+    }));
+  };
 
   return (
-    <nav className="flex items-center justify-between py-2 font-medium px-5 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] shadow">
-      {/* Navbar logo */}
+    <nav className="flex items-center justify-between py-2 px-5 sm:px-[5vw] lg:px-[9vw] shadow font-medium">
+      {/* Logo */}
       <Link to="/" className="text-2xl font-semibold">
         <img src="/shikhon.png" className="w-20 h-16" alt="Logo" />
       </Link>
 
-      {/* Navbar menu for larger screens */}
+      {/* Desktop menu */}
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
-        <NavLink to="/" className="flex flex-col items-center gap-1">
-          <p>হোম</p>
-          <hr className="w-2/4 border-none bg-gray-700 h-[1.5px] hidden" />
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `flex flex-col items-center gap-1 ${
+              isActive ? "text-blue-600 font-bold" : "text-gray-700"
+            }`
+          }
+        >
+          হোম
         </NavLink>
 
-        {/* Job menu with dropdown for larger screens */}
-        <li className="flex flex-col items-center relative">
+        {/* Job dropdown menu */}
+        <li className="relative">
           <button
-            onClick={() => setJobMenuVisible(!jobMenuVisible)}
+            onClick={() => toggleDropdown("job")}
             className="flex items-center gap-2"
           >
             <p>চাকরি</p>
             <IoMdArrowDropdown
               size={20}
-              className={`${jobMenuVisible ? "rotate-180" : ""}`}
+              className={`${dropdowns.job ? "rotate-180" : ""}`}
             />
           </button>
-          {jobMenuVisible && (
+          {dropdowns.job && (
             <ul className="absolute top-full left-0 bg-white shadow-lg rounded-md mt-2 w-40 z-50">
-              <NavLink
-                to="/সরকারি চাকরি"
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
-              >
-                সরকারি চাকরি
-              </NavLink>
-              <NavLink
-                to="/বেসরকারি চাকরি"
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
-              >
-                বেসরকারি চাকরি
-              </NavLink>
-              <NavLink
-                to="/ব্যাংক চাকরি"
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
-              >
-                ব্যাংক চাকরি
-              </NavLink>
+              {[
+                { to: "/সরকারি চাকরি", text: "সরকারি চাকরি" },
+                { to: "/বেসরকারি চাকরি", text: "বেসরকারি চাকরি" },
+                { to: "/ব্যাংক চাকরি", text: "ব্যাংক চাকরি" },
+              ].map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
+                >
+                  {item.text}
+                </NavLink>
+              ))}
             </ul>
           )}
         </li>
 
-        <NavLink to="/শিক্ষাক্রম" className="flex flex-col items-center gap-1">
-          <p>শিক্ষাক্রম</p>
-          <hr className="w-2/4 border-none bg-gray-700 h-[1.5px] hidden" />
+        {/* Curriculum dropdown menu */}
+        <li className="relative">
+          <button
+            onClick={() => toggleDropdown("curriculum")}
+            className="flex items-center gap-2"
+          >
+            <p>শিক্ষাক্রম</p>
+            <IoMdArrowDropdown
+              size={20}
+              className={`${dropdowns.curriculum ? "rotate-180" : ""}`}
+            />
+          </button>
+          {dropdowns.curriculum && (
+            <ul className="absolute top-full left-0 bg-white shadow-lg rounded-md mt-2 w-40 z-50">
+              {[
+                { to: "/Job Solution", text: "Job Solution" },
+                { to: "/Academic Solution", text: "Academic Solution" },
+              ].map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
+                >
+                  {item.text}
+                </NavLink>
+              ))}
+            </ul>
+          )}
+        </li>
+
+        <NavLink
+          to="/বিজ্ঞান"
+          className={({ isActive }) =>
+            `flex flex-col items-center gap-1 ${
+              isActive ? "text-blue-600 font-bold" : "text-gray-700"
+            }`
+          }
+        >
+          বিজ্ঞান
         </NavLink>
-        <NavLink to="/বিজ্ঞান" className="flex flex-col items-center gap-1">
-          <p>বিজ্ঞান</p>
-          <hr className="w-2/4 border-none bg-gray-700 h-[1.5px] hidden" />
-        </NavLink>
-        <NavLink to="/প্রযুক্তি" className="flex flex-col items-center gap-1">
-          <p>প্রযুক্তি</p>
-          <hr className="w-2/4 border-none bg-gray-700 h-[1.5px] hidden" />
+        <NavLink
+          to="/প্রযুক্তি"
+          className={({ isActive }) =>
+            `flex flex-col items-center gap-1 ${
+              isActive ? "text-blue-600 font-bold" : "text-gray-700"
+            }`
+          }
+        >
+          প্রযুক্তি
         </NavLink>
       </ul>
 
-      {/* Navbar menu icon for smaller screens */}
-      <button
-        aria-label="Open menu"
-        onClick={() => setVisible(true)}
-        className="sm:hidden"
-      >
-        <img src="/menu_icon.png" alt="menu icon" className="w-5" />
+      {/* Mobile menu button */}
+      <button onClick={() => setVisible(!visible)} className="sm:hidden">
+        <img src="/menu_icon.png" alt="Menu Icon" className="w-5" />
       </button>
 
-      {/* Sidebar for small screens */}
+      {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 right-0 bottom-0 bg-slate-100 z-50 transition-transform duration-300 w-64 transform ${
+        className={`fixed top-0 right-0 bottom-0 w-64 bg-slate-100 z-50 transition-transform transform ${
           visible ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Close button */}
         <button
-          aria-label="Close menu"
           onClick={() => setVisible(false)}
-          className="p-3 inline-flex gap-3 items-center"
+          className="p-3 flex items-center gap-3"
         >
           <img
             src="/dropdown_icon.png"
-            alt="back icon"
+            alt="Close"
             className="h-4 rotate-180"
           />
           <span>Back</span>
         </button>
-
-        {/* Sidebar navigation items */}
         <div className="flex flex-col">
           <NavLink
             to="/"
             onClick={() => setVisible(false)}
-            className="border p-6 text-center"
+            className="border p-6"
           >
             হোম
           </NavLink>
-          {/* Job submenu for mobile */}
-          <div className="mt-4">
+
+          {/* Mobile Job Submenu */}
+          <div className="text-left">
             <button
-              onClick={() => setJobSubmenuVisible(!jobSubmenuVisible)}
-              className="flex justify-center gap-3 items-center w-full px-6 py-4 text-gray-700"
+              onClick={() => toggleDropdown("mobileJob")}
+              className="flex justify-between items-center px-6 py-4 bg-gray-100"
             >
               <span>চাকরি</span>
               <IoMdArrowDropdown
                 size={20}
-                className={`${jobSubmenuVisible ? "rotate-180" : ""}`}
+                className={`${dropdowns.mobileJob ? "rotate-180" : ""}`}
               />
             </button>
-            {jobSubmenuVisible && (
-              <div className="space-y-2 text-center">
-                <NavLink
-                  to="/সরকারি চাকরি"
-                  onClick={() => setVisible(false)}
-                  className="block px-6 py-2 text-gray-700 hover:bg-gray-200"
-                >
-                  সরকারি চাকরি
-                </NavLink>
-                <NavLink
-                  to="/বেসরকারি চাকরি"
-                  onClick={() => setVisible(false)}
-                  className="block px-6 py-2 text-gray-700 hover:bg-gray-200"
-                >
-                  বেসরকারি চাকরি
-                </NavLink>
-                <NavLink
-                  to="/ব্যাংক চাকরি"
-                  onClick={() => setVisible(false)}
-                  className="block px-6 py-2 text-gray-700 hover:bg-gray-200"
-                >
-                  ব্যাংক চাকরি
-                </NavLink>
+            {dropdowns.mobileJob && (
+              <div className="bg-white border-t mx-2 rounded-md">
+                {[
+                  { to: "/সরকারি চাকরি", text: "সরকারি চাকরি" },
+                  { to: "/বেসরকারি চাকরি", text: "বেসরকারি চাকরি" },
+                  { to: "/ব্যাংক চাকরি", text: "ব্যাংক চাকরি" },
+                ].map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setVisible(false)}
+                    className="block px-6 py-2 text-gray-700 hover:bg-gray-200"
+                  >
+                    {item.text}
+                  </NavLink>
+                ))}
               </div>
             )}
           </div>
-          <NavLink
-            to="/শিক্ষাক্রম"
-            onClick={() => setVisible(false)}
-            className="border p-6 text-center"
-          >
-            শিক্ষাক্রম
-          </NavLink>
+
+          {/* Mobile Curriculum Submenu */}
+          <div className="text-left">
+            <button
+              onClick={() => toggleDropdown("mobileCurriculum")}
+              className="flex justify-between items-center px-6 py-4 bg-gray-100"
+            >
+              <span>শিক্ষাক্রম</span>
+              <IoMdArrowDropdown
+                size={20}
+                className={`${dropdowns.mobileCurriculum ? "rotate-180" : ""}`}
+              />
+            </button>
+            {dropdowns.mobileCurriculum && (
+              <div className="bg-white border-t mx-2 rounded-md">
+                {[
+                  { to: "/Job Solution", text: "Job Solution" },
+                  { to: "/Academic Solution", text: "Academic Solution" },
+                ].map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setVisible(false)}
+                    className="block px-6 py-2 text-gray-700 hover:bg-gray-200"
+                  >
+                    {item.text}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
+
           <NavLink
             to="/বিজ্ঞান"
             onClick={() => setVisible(false)}
-            className="border p-6 text-center"
+            className="border p-6"
           >
             বিজ্ঞান
           </NavLink>
           <NavLink
             to="/প্রযুক্তি"
             onClick={() => setVisible(false)}
-            className="border p-6 text-center"
+            className="border p-6"
           >
             প্রযুক্তি
           </NavLink>
