@@ -45,7 +45,6 @@ const AddUser = () => {
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-6">Add User</h1>
         <form onSubmit={handleSubmit}>
-          {/* Name Field */}
           <div className="mb-4">
             <label
               htmlFor="name"
@@ -65,7 +64,6 @@ const AddUser = () => {
             />
           </div>
 
-          {/* Email Field */}
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -85,7 +83,6 @@ const AddUser = () => {
             />
           </div>
 
-          {/* Password Field */}
           <div className="mb-6">
             <label
               htmlFor="password"
@@ -105,7 +102,6 @@ const AddUser = () => {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white font-medium py-2 rounded-md hover:bg-blue-600 transition duration-300"

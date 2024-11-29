@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"; // Import useNavigate
+import { useParams } from "react-router-dom";
 import { BlogContext } from "../contexts/BlogContext";
 import Loading from "../components/Loading";
 import {
@@ -22,8 +22,6 @@ const Post = () => {
   const [postDetails, setPostDetails] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const decodeTitle = decodeURIComponent(title);
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const post = posts.find((p) => p.title === decodeTitle);
@@ -46,32 +44,7 @@ const Post = () => {
   }, [posts]);
 
   const handleRelatedPostClick = () => {
-    // navigate(`/post/${postTitle}`);
-    window.scrollTo(0, 0); // Scroll to the top
-  };
-
-  // Show or hide the button based on scroll position
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 250) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener("scroll", toggleVisibility);
-    return () => {
-      window.removeEventListener("scroll", toggleVisibility);
-    };
-  }, []);
-
-  // Scroll to the top of the page
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo(0, 0);
   };
 
   if (loading) {
@@ -158,16 +131,6 @@ const Post = () => {
           )}
         </div>
       </div>
-
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-5 right-5 bg-blue-600 text-white w-10 h-10 text-2xl rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300"
-          aria-label="Back to top"
-        >
-          ↑
-        </button>
-      )}
     </div>
   );
 };

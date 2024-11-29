@@ -5,10 +5,10 @@ const Navbar = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <nav className="flex items-center justify-between py-5 font-medium px-5 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] shadow">
+    <nav className="flex items-center justify-between py-3 font-medium px-5 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] shadow">
       {/* Navbar logo */}
-      <Link to="/" className="text-2xl font-semibold">
-        Shikhonbd Admin
+      <Link to="/" className="text-2xl font-semibold flex items-center gap-3">
+        <img src="/shikhon.png" alt="" className="w-16 h-14" /> Admin
       </Link>
 
       {/* Navbar menu for larger screens */}

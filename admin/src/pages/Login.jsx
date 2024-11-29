@@ -50,7 +50,6 @@ const Login = () => {
       <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
         <form className="mt-6" onSubmit={submitHandler}>
-          {/* Email Input */}
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -70,7 +69,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Password Input */}
           <div className="mb-4">
             <label
               htmlFor="password"
@@ -90,7 +88,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Remember Me and Forgot Password */}
           <div className="mb-4 flex items-center justify-between">
             <label className="inline-flex items-center">
               <input
@@ -107,7 +104,6 @@ const Login = () => {
             </a>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className={`w-full px-4 py-2 text-white font-semibold rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 ${

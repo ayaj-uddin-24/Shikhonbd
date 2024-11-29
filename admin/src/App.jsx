@@ -5,7 +5,6 @@ export const url = "https://shikhonbd-backend.onrender.com";
 import { ToastContainer } from "react-toastify";
 import "../node_modules/react-toastify/dist/ReactToastify.min.css";
 import { BlogContext } from "./contexts/BlogContext";
-import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import ManagePosts from "./pages/ManagePosts";
 import ManageUsers from "./pages/ManageUsers";
@@ -20,7 +19,10 @@ const App = () => {
       {user ? <Navbar /> : <></>}
       <ToastContainer />
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Login />} />
+        <Route
+          path="/"
+          element={user ? <Navigate to="/manage-posts" /> : <Login />}
+        />
         <Route
           path="/manage-posts"
           element={user ? <ManagePosts /> : <Navigate to="/" />}
