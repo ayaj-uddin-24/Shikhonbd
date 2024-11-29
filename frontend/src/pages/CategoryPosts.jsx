@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 
 const CategoryPosts = () => {
   const { category } = useParams();
+  const [isVisible, setIsVisible] = useState(false);
   const { posts, loading, setLoading } = useContext(BlogContext);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,6 +24,30 @@ const CategoryPosts = () => {
 
     return () => clearTimeout(timer);
   }, [posts]);
+
+  // Show or hide the button based on scroll position
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 250) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+    };
+  }, []);
+
+  // Scroll to the top of the page
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   if (loading) {
     return <Loading />;
@@ -88,6 +113,15 @@ const CategoryPosts = () => {
           </button>
         ))}
       </div>
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-5 right-5 bg-blue-600 text-white w-10 h-10 text-2xl rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300"
+          aria-label="Back to top"
+        >
+          ↑
+        </button>
+      )}
     </div>
   );
 };

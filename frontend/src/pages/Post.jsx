@@ -23,6 +23,7 @@ const Post = () => {
   const [relatedPosts, setRelatedPosts] = useState([]);
   const decodeTitle = decodeURIComponent(title);
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const post = posts.find((p) => p.title === decodeTitle);
@@ -47,6 +48,30 @@ const Post = () => {
   const handleRelatedPostClick = () => {
     // navigate(`/post/${postTitle}`);
     window.scrollTo(0, 0); // Scroll to the top
+  };
+
+  // Show or hide the button based on scroll position
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 250) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+    };
+  }, []);
+
+  // Scroll to the top of the page
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   if (loading) {
@@ -118,10 +143,7 @@ const Post = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {relatedPosts.length > 0 ? (
             relatedPosts.map((post) => (
-              <div
-                key={post._id}
-                onClick={ handleRelatedPostClick()}
-              >
+              <div key={post._id} onClick={handleRelatedPostClick()}>
                 <PostItem
                   id={post._id}
                   imageUrl={post.imageUrl}
@@ -136,6 +158,16 @@ const Post = () => {
           )}
         </div>
       </div>
+
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-5 right-5 bg-blue-600 text-white w-10 h-10 text-2xl rounded-full shadow-lg hover:bg-blue-700 transition-opacity duration-300"
+          aria-label="Back to top"
+        >
+          ↑
+        </button>
+      )}
     </div>
   );
 };
