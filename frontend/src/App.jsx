@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import CategoryPosts from "./pages/CategoryPosts";
 import Post from "./pages/Post";
-export const url = "https://shikhonbd-backend.onrender.com";
+export const url = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
   const [isVisible, setIsVisible] = useState(false);
