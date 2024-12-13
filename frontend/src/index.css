@@ -12,3 +12,42 @@ a.active hr {
     color: #fff;
   }
 }
+
+ul,
+ol {
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  list-style: disc; /* For unordered lists */
+}
+
+ol {
+  list-style: decimal; /* For ordered lists */
+}
+
+li {
+  margin-bottom: 0.5rem; /* Space between list items */
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  padding: 10px 0;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+.post a {
+  color: blue;
+  text-decoration: underline;
+}

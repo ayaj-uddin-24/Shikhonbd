@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
 import { url } from "../App";
 import { toast } from "react-toastify";
 import { BlogContext } from "../contexts/BlogContext";
+import axios from "axios";
 
 const Login = () => {
   const { setUser } = useContext(BlogContext);

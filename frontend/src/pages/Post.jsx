@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { BlogContext } from "../contexts/BlogContext";
 import Loading from "../components/Loading";
 import {
@@ -16,8 +16,14 @@ import {
 } from "react-share";
 import PostItem from "../components/PostItem";
 
+const sanitizeHTML = (html) => {
+  const parser = new DOMParser();
+  const parsedDoc = parser.parseFromString(html, "text/html");
+  return parsedDoc.body.innerHTML;
+};
+
 const Post = () => {
-  const { posts, loading, setLoading } = useContext(BlogContext);
+  const { posts, loading } = useContext(BlogContext);
   const { title } = useParams();
   const [postDetails, setPostDetails] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
@@ -34,18 +40,6 @@ const Post = () => {
       setRelatedPosts(related);
     }
   }, [posts, decodeTitle]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [posts]);
-
-  const handleRelatedPostClick = () => {
-    window.scrollTo(0, 0);
-  };
 
   if (loading) {
     return <Loading />;
@@ -65,7 +59,7 @@ const Post = () => {
   const titleText = postDetails.title;
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 px-5 sm:px-[5vw] lg:px-[9vw]">
       {postDetails.imageUrl && (
         <img
           src={postDetails.imageUrl}
@@ -81,13 +75,17 @@ const Post = () => {
         <p>Published on: {new Date(postDetails.createdAt).toLocaleString()}</p>
       </div>
 
-      <div
-        className="text-gray-700 leading-7"
-        dangerouslySetInnerHTML={{ __html: postDetails.content }}
-      ></div>
+      <div className="post">
+        <div
+          className="text-gray-700 leading-7"
+          dangerouslySetInnerHTML={{
+            __html: sanitizeHTML(postDetails.content),
+          }}
+        ></div>
+      </div>
 
-      <div className="mt-6">
-        <span className="font-medium text-gray-700 block mb-2">Share:</span>
+      <div className="mt-6 flex items-center gap-4">
+        <span className="font-medium text-gray-700 block mb-2">Share : </span>
         <div className="flex flex-wrap items-center gap-3 sm:gap-4">
           <FacebookShareButton url={shareUrl} quote={titleText}>
             <FacebookIcon size={40} round />
@@ -116,7 +114,10 @@ const Post = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {relatedPosts.length > 0 ? (
             relatedPosts.map((post) => (
-              <div key={post._id} onClick={handleRelatedPostClick()}>
+              <Link
+                key={post._id}
+                to={`/post/${encodeURIComponent(post.title)}`}
+              >
                 <PostItem
                   id={post._id}
                   imageUrl={post.imageUrl}
@@ -124,7 +125,7 @@ const Post = () => {
                   content={post.content}
                   createdAt={post.createdAt}
                 />
-              </div>
+              </Link>
             ))
           ) : (
             <p>No related posts available here</p>

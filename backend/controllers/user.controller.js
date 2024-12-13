@@ -1,5 +1,4 @@
 import User from "../models/user.model.js";
-import bcrypt from "bcryptjs";
 
 // Add a new user
 export const addUser = async (req, res) => {
@@ -13,13 +12,10 @@ export const addUser = async (req, res) => {
         .json({ success: false, message: "User already exists!" });
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashPass = await bcrypt.hash(password, salt);
-
     const newUser = new User({
       name,
       email,
-      password: hashPass,
+      password,
     });
     await newUser.save();
 
@@ -71,26 +67,34 @@ export const getUser = async (req, res) => {
   }
 };
 
-// Login a user
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const user = await User.findOne({ email });
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found!" });
-    }
 
-    const passCompare = await bcrypt.compare(password, user.password);
-    if (!passCompare) {
+    if (
+      email === process.env.ADMIN_MAIL &&
+      password === process.env.ADMIN_PASS
+    ) {
+      return res
+        .status(201)
+        .json({
+          success: true,
+          message: "User Login Successful",
+          user: {
+            email: process.env.ADMIN_MAIL,
+            password: process.env.ADMIN_PASS,
+          },
+        });
+    } else if (email === user.email && password === user.password) {
+      return res
+        .status(201)
+        .json({ success: true, message: "User Login Successful", user });
+    } else {
       return res
         .status(401)
-        .json({ success: false, message: "Incorrect password!" });
+        .json({ success: false, message: "Invalid Credintials" });
     }
-
-    res.status(200).json({ success: true, message: "Login successful", user });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

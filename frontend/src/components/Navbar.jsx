@@ -29,7 +29,7 @@ const Navbar = () => {
       </Link>
 
       {/* Desktop menu */}
-      <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
+      <ul className="hidden sm:flex gap-5 text-sm text-gray-700 list-none">
         <NavLink
           to="/"
           className={({ isActive }) =>

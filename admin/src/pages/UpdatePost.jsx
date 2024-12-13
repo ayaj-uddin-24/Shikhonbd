@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { url } from "../App";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import axios from "axios";
 
 const UpdatePost = () => {
   const { id } = useParams();

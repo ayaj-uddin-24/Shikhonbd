@@ -18,6 +18,10 @@ const AddUser = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (userData.password.length < 6) {
+      toast.error("Password must contain a minimum of 6 characters");
+    }
+
     if (!userData.name || !userData.email || !userData.password) {
       alert("Please fill in all fields!");
       return;

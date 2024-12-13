@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BlogContext } from "../contexts/BlogContext";
-import axios from "axios";
 import { url } from "../App";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const ManageUsers = () => {
   const { users } = useContext(BlogContext);

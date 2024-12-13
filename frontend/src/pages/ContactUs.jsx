@@ -1,0 +1,20 @@
+import React from "react";
+
+const ContactUs = () => {
+  return (
+    <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-5">
+      <p className="text-3xl font-bold">Contact Us</p>
+      <br />
+      <p>
+        প্রিয় পাঠক, আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শের জন্য আমাদের সাথে
+        যোগাযোগ করুন। আমরা আপনার বার্তার জন্য অপেক্ষায় আছি।
+      </p>
+      <br />
+      <p>
+        <span className="font-bold">Email : </span>contactshikhonbd@gmail.com
+      </p>
+    </div>
+  );
+};
+
+export default ContactUs;

@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
-export const url = import.meta.env.VITE_BACKEND_URL;
 import { ToastContainer } from "react-toastify";
-import "../node_modules/react-toastify/dist/ReactToastify.min.css";
 import { BlogContext } from "./contexts/BlogContext";
+import Login from "./pages/Login";
+import "../node_modules/react-toastify/dist/ReactToastify.min.css";
 import Navbar from "./components/Navbar";
 import ManagePosts from "./pages/ManagePosts";
 import ManageUsers from "./pages/ManageUsers";
 import AddPost from "./pages/AddPost";
 import UpdatePost from "./pages/UpdatePost";
 import AddUser from "./pages/AddUser";
+export const url = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
   const { user } = useContext(BlogContext);

@@ -11,25 +11,33 @@ const Footer = () => {
             <img src="/shikhon.png" className="w-12" alt="" />
             <h2 className="text-lg font-semibold">Shikhonbd</h2>
           </div>
-          <ul className="flex space-x-4 mt-4 md:mt-0">
+          <ul className="flex space-x-4 mt-4 md:mt-0 list-none">
             <li>
-              <Link to="/" className="hover:text-blue-400">
-                Home
+              <Link to="/about-us" className="hover:text-blue-400">
+                About Us
               </Link>
             </li>
             <li>
-              <Link to="/শিক্ষাক্রম" className="hover:text-blue-400">
-                Education
+              <Link to="/contact-us" className="hover:text-blue-400">
+                Contact Us
               </Link>
             </li>
             <li>
-              <Link to="/বিজ্ঞান" href="#" className="hover:text-blue-400">
-                Science
+              <Link
+                to="/privacy-policy"
+                href="#"
+                className="hover:text-blue-400"
+              >
+                Privacy Policy
               </Link>
             </li>
             <li>
-              <Link to="/প্রযুক্তি" href="#" className="hover:text-blue-400">
-                Technology
+              <Link
+                to="/terms-and-conditions"
+                href="#"
+                className="hover:text-blue-400"
+              >
+                Terms and Condition
               </Link>
             </li>
           </ul>

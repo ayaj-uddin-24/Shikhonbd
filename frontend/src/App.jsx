@@ -5,6 +5,10 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import CategoryPosts from "./pages/CategoryPosts";
 import Post from "./pages/Post";
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 export const url = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
@@ -36,6 +40,10 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/:category" element={<CategoryPosts />} />
         <Route path="/post/:title" element={<Post />} />
       </Routes>

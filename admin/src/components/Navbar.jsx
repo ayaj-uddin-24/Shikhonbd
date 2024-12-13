@@ -32,7 +32,7 @@ const Navbar = () => {
           onClick={() => {
             const remove = confirm("Do you want to logout");
             if (remove) {
-              localStorage.removeItem("user");
+              sessionStorage.clear();
               window.location.replace("/");
             }
           }}
@@ -94,7 +94,7 @@ const Navbar = () => {
               setVisible(false);
               const remove = confirm("Do you want to logout");
               if (remove) {
-                localStorage.removeItem("user");
+                sessionStorage.clear();
                 window.location.replace("/");
               }
             }}

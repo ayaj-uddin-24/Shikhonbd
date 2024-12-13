@@ -15,7 +15,7 @@ app.use(cors());
 
 // Get the home route
 app.get("/", (req, res) => {
-  res.send("This is home route");
+  res.send("This is home route" + " " + process.env.ADMIN_MAIL);
 });
 
 // API routes
