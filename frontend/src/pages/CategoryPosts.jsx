@@ -9,7 +9,7 @@ const CategoryPosts = () => {
   const { posts, loading, setLoading } = useContext(BlogContext);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 10;
+  const postsPerPage = 3;
 
   useEffect(() => {
     const filterPosts = posts.filter((post) => post.category === category);

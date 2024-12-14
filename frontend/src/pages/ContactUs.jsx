@@ -3,7 +3,7 @@ import React from "react";
 const ContactUs = () => {
   return (
     <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-5">
-      <p className="text-3xl font-bold">Contact Us</p>
+      <p className="text-3xl font-bold">যোগাযোগ</p>
       <br />
       <p>
         প্রিয় পাঠক, আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শের জন্য আমাদের সাথে

@@ -3,7 +3,7 @@ import React from "react";
 const PrivacyPolicy = () => {
   return (
     <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-5">
-      <p className="text-3xl font-bold">Privacy and Policy</p>
+      <p className="text-3xl font-bold">প্রাইভেসি এন্ড পলিসি</p>
       <br />
       <p>
         শিখনবিডি একটি অনলাইন ম্যাগাজিন। আপনি যখন শিখনবিডি ওয়েবসাইট ভিজিট করবেন,

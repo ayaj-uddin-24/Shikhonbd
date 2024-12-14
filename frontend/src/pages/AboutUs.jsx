@@ -3,7 +3,7 @@ import React from "react";
 const AboutUs = () => {
   return (
     <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-5">
-      <p className="text-3xl font-bold">About Us</p>
+      <p className="text-3xl font-bold">আমাদের সম্পর্কে</p>
       <br />
       <p>
         শিখনবিডিতে আপনাকে স্বাগতম। শিখনবিডি বাংলাদেশের অন্যতম জনপ্রিয়
@@ -43,7 +43,7 @@ const AboutUs = () => {
         </li>
       </ul>
       <br />
-      <p className="font-bold">শিখবিডি – আপনার জ্ঞান অর্জনের সহজতম পথ।</p>
+      <p className="font-bold">শিখনবিডি – আপনার জ্ঞান অর্জনের সহজতম পথ।</p>
       <br />
       <br />
       <p className="text-3xl font-bold">About Us:</p>
