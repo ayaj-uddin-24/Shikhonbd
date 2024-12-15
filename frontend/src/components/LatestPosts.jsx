@@ -16,7 +16,7 @@ const LatestPosts = () => {
     <div className="container mx-auto p-4 mt-5">
       {/* Header */}
       <div className="border-b-2 pb-2 mb-4 flex items-center">
-        <p className="text-lg font-bold">Latest</p>
+        <h1 className="text-lg font-bold">Latest</h1>
       </div>
 
       {/* News Grid */}
