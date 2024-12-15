@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 const TermsAndConditions = () => {
   return (
     <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-5">
+      <Helmet>
+        <title>Terms and Conditions</title>
+      </Helmet>
       <p className="text-3xl font-bold">শর্তাবলী এবং নিয়মাবলী</p>
       <br />
       <p className="font-bold">শিখনবিডির পিডিএফ ফাইল ব্যবহার নীতিমালা :</p>

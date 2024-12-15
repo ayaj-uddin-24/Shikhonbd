@@ -3,6 +3,7 @@ import { BlogContext } from "../contexts/BlogContext";
 import { Link, useParams } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import Loading from "../components/Loading";
+import { Helmet } from "react-helmet";
 
 const CategoryPosts = () => {
   const { category } = useParams();
@@ -40,6 +41,9 @@ const CategoryPosts = () => {
 
   return (
     <div className="bg-white text-black">
+      <Helmet>
+        <title>{category}</title>
+      </Helmet>
       <p className="text-3xl font-bold p-5 mt-5">{category}</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-5 mt-5">
         {currentPosts.map((article) => (

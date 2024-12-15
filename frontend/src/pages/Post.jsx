@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { BlogContext } from "../contexts/BlogContext";
 import Loading from "../components/Loading";
+import { Helmet } from "react-helmet";
 import {
   EmailIcon,
   EmailShareButton,
@@ -60,6 +61,9 @@ const Post = () => {
 
   return (
     <div className="container mx-auto p-6 px-5 sm:px-[5vw] lg:px-[9vw]">
+      <Helmet>
+        <title>{postDetails.title}</title>
+      </Helmet>
       {postDetails.imageUrl && (
         <img
           src={postDetails.imageUrl}

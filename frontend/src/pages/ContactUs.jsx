@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 const ContactUs = () => {
   return (
     <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-10">
+      <Helmet>
+        <title>Contact</title>
+      </Helmet>
       <p className="text-3xl font-bold">যোগাযোগ</p>
       <br />
       <p>

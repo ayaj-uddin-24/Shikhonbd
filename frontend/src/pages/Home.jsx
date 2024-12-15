@@ -8,6 +8,7 @@ import { BlogContext } from "../contexts/BlogContext";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import Loading from "../components/Loading";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const { posts, searchTerm, loading, setLoading } = useContext(BlogContext);
@@ -34,6 +35,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Shikhonbd | Home</title>
+      </Helmet>
       <Search />
       {searchTerm ? (
         <div className="bg-white text-black mt-5">

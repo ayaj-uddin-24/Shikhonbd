@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 const PrivacyPolicy = () => {
   return (
     <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-10">
+      <Helmet>
+        <title>Privacy Policy</title>
+      </Helmet>
       <p className="text-3xl font-bold">গোপনীয়তা এবং নীতিমালা</p>
       <br />
       <p>
