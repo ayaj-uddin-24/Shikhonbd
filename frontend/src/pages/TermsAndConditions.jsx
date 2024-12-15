@@ -7,7 +7,7 @@ const TermsAndConditions = () => {
       <Helmet>
         <title>Terms and Conditions</title>
       </Helmet>
-      <p className="text-3xl font-bold">শর্তাবলী এবং নিয়মাবলী</p>
+      <h2 className="text-3xl font-bold">শর্তাবলী এবং নিয়মাবলী</h2>
       <br />
       <p className="font-bold">শিখনবিডির পিডিএফ ফাইল ব্যবহার নীতিমালা :</p>
       <br />
@@ -79,7 +79,7 @@ const TermsAndConditions = () => {
       <br />
       <br />
 
-      <p className="text-3xl font-bold">Terms and Conditions</p>
+      <h2 className="text-3xl font-bold">Terms and Conditions</h2>
       <br />
       <p className="font-bold">Usage Policy for ShikhonBD's PDF Files :</p>
       <br />

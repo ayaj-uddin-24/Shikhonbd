@@ -24,7 +24,7 @@ const ManagePosts = () => {
         Add Post
       </Link>
 
-      <p className="text-3xl font-semibold text-center py-10">Manage Posts</p>
+      <h2 className="text-3xl font-semibold text-center py-10">Manage Posts</h2>
 
       {posts ? (
         <table className="w-full border-collapse border text-center">

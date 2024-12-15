@@ -44,7 +44,7 @@ const CategoryPosts = () => {
       <Helmet>
         <title>{category}</title>
       </Helmet>
-      <p className="text-3xl font-bold p-5 mt-5">{category}</p>
+      <h2 className="text-3xl font-bold p-5 mt-5">{category}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-5 mt-5">
         {currentPosts.map((article) => (
           <Link

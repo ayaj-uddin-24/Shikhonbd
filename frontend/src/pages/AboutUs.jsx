@@ -7,7 +7,7 @@ const AboutUs = () => {
       <Helmet>
         <title>About Us</title>
       </Helmet>
-      <p className="text-3xl font-bold">আমাদের সম্পর্কে</p>
+      <h2 className="text-3xl font-bold">আমাদের সম্পর্কে</h2>
       <br />
       <p>
         শিখনবিডিতে আপনাকে স্বাগতম। শিখনবিডি বাংলাদেশের অন্যতম জনপ্রিয়
@@ -51,7 +51,7 @@ const AboutUs = () => {
       <p className="font-bold">শিখনবিডি – আপনার জ্ঞান অর্জনের সহজতম পথ।</p>
       <br />
       <br />
-      <p className="text-3xl font-bold">About Us:</p>
+      <h2 className="text-3xl font-bold">About Us:</h2>
       <br />
       <p>
         Welcome to ShikhonBD! ShikhonBD is one of the most popular educational

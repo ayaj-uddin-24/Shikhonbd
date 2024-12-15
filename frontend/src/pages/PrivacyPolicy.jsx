@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
       <Helmet>
         <title>Privacy Policy</title>
       </Helmet>
-      <p className="text-3xl font-bold">গোপনীয়তা এবং নীতিমালা</p>
+      <h2 className="text-3xl font-bold">গোপনীয়তা এবং নীতিমালা</h2>
       <br />
       <p>
         শিখনবিডি একটি অনলাইন ম্যাগাজিন। আপনি যখন শিখনবিডি ওয়েবসাইট ভিজিট করবেন,
@@ -52,7 +52,7 @@ const PrivacyPolicy = () => {
       <br />
       <br />
 
-      <p className="text-3xl font-bold">Privacy and Policy</p>
+      <h2 className="text-3xl font-bold">Privacy and Policy</h2>
       <br />
       <p>
         ShikhonBD is an online magazine. When you visit the ShikhonBD website,

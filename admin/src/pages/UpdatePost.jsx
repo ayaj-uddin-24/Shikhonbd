@@ -99,7 +99,7 @@ const UpdatePost = () => {
 
   return (
     <div className="px-5 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] py-10">
-      <p className="text-3xl font-bold text-center">Edit Post</p>
+      <h2 className="text-3xl font-bold text-center">Edit Post</h2>
 
       <form
         action="#"

@@ -7,7 +7,7 @@ const ContactUs = () => {
       <Helmet>
         <title>Contact</title>
       </Helmet>
-      <p className="text-3xl font-bold">যোগাযোগ</p>
+      <h2 className="text-3xl font-bold">যোগাযোগ</h2>
       <br />
       <p>
         প্রিয় পাঠক, আপনার যেকোনো প্রশ্ন, মতামত বা পরামর্শের জন্য আমাদের সাথে

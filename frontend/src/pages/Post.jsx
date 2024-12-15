@@ -49,9 +49,9 @@ const Post = () => {
   if (!postDetails) {
     return (
       <div className="container mx-auto p-4">
-        <p className="text-center text-2xl font-bold text-red-600">
+        <h3 className="text-center text-2xl font-bold text-red-600">
           Post not found!
-        </p>
+        </h3>
       </div>
     );
   }
@@ -71,7 +71,7 @@ const Post = () => {
           className="w-full rounded-lg mb-5"
         />
       )}
-      <p className="text-3xl font-bold text-gray-800">{postDetails.title}</p>
+      <h2 className="text-3xl font-bold text-gray-800">{postDetails.title}</h2>
       <div className="mt-2 mb-4 text-sm text-gray-500">
         <p>
           Category: <span className="font-medium">{postDetails.category}</span>
@@ -114,7 +114,7 @@ const Post = () => {
       </div>
 
       <div className="mt-10">
-        <p className="text-2xl font-bold mb-5">Related Posts</p>
+        <h3 className="text-2xl font-bold mb-5">Related Posts</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {relatedPosts.length > 0 ? (
             relatedPosts.map((post) => (
