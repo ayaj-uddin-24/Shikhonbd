@@ -9,7 +9,7 @@ const CategoryPosts = () => {
   const { posts, loading, setLoading } = useContext(BlogContext);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 3;
+  const postsPerPage = 10;
 
   useEffect(() => {
     const filterPosts = posts.filter((post) => post.category === category);
@@ -19,7 +19,7 @@ const CategoryPosts = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, [posts]);
@@ -40,8 +40,8 @@ const CategoryPosts = () => {
 
   return (
     <div className="bg-white text-black">
-      <h1 className="text-3xl font-bold p-5 mt-5">{category}</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-5">
+      <p className="text-3xl font-bold p-5 mt-5">{category}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-5 mt-5">
         {currentPosts.map((article) => (
           <Link
             to={`/post/${encodeURIComponent(article.title)}`}
@@ -54,9 +54,9 @@ const CategoryPosts = () => {
               alt={article.title}
             />
             <div className="p-5 bg-white">
-              <h5 className="mb-2 text-md font-bold tracking-tight text-gray-800">
+              <p className="mb-2 text-md font-bold tracking-tight text-gray-800">
                 {article.title}
-              </h5>
+              </p>
               <p
                 className="mb-3 font-normal text-sm text-gray-600"
                 dangerouslySetInnerHTML={{

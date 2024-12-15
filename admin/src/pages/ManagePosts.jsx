@@ -12,9 +12,9 @@ const ManagePosts = () => {
     const res = await axios.delete(`${url}/api/post/remove-post/${id}`);
     if (res.data.success) {
       toast.success(res.data.message);
-    } else {
     }
   };
+
   return (
     <div className="px-5 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] mt-5">
       <Link
@@ -24,7 +24,7 @@ const ManagePosts = () => {
         Add Post
       </Link>
 
-      <h1 className="text-3xl font-semibold text-center py-10">Manage Posts</h1>
+      <p className="text-3xl font-semibold text-center py-10">Manage Posts</p>
 
       {posts ? (
         <table className="w-full border-collapse border text-center">
@@ -52,7 +52,9 @@ const ManagePosts = () => {
                       </td>
                       <td>{post.title.slice(0, 20)}...</td>
                       <td>{post.category}</td>
-                      <td>{post.popular.toString()}</td>
+                      <td>
+                        {post.popular.toString() === "true" ? "Yes" : "No"}
+                      </td>
                       <td>
                         <Link
                           to={`/update-post/${post._id}`}

@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           <div className="flex items-center gap-4">
             <img src="/shikhon.png" className="w-12" alt="" />
-            <h2 className="text-lg font-semibold">Shikhonbd</h2>
+            <p className="text-lg font-semibold">Shikhonbd</p>
           </div>
           <ul className="flex space-x-4 mt-4 md:mt-0 list-none">
             <li>
@@ -23,20 +23,12 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link
-                to="/privacy-policy"
-                href="#"
-                className="hover:text-blue-400"
-              >
+              <Link to="/privacy-policy" className="hover:text-blue-400">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link
-                to="/terms-and-conditions"
-                href="#"
-                className="hover:text-blue-400"
-              >
+              <Link to="/terms-and-conditions" className="hover:text-blue-400">
                 Terms and Condition
               </Link>
             </li>

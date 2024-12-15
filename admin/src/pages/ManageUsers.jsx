@@ -34,7 +34,7 @@ const ManageUsers = () => {
         Add User
       </Link>
 
-      <h1 className="text-3xl font-semibold text-center py-10">Manage Users</h1>
+      <p className="text-3xl font-semibold text-center py-10">Manage Users</p>
 
       {users ? (
         <table className="w-full border-collapse border text-center">

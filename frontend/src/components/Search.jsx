@@ -11,7 +11,7 @@ const Search = () => {
   };
 
   return (
-    <form className="flex items-center max-w-sm mx-auto mt-5">
+    <div className="flex items-center max-w-sm mx-auto mt-5">
       <label htmlFor="simple-search" className="sr-only">
         Search
       </label>
@@ -25,18 +25,15 @@ const Search = () => {
           onChange={handleChange}
           value={searchTerm}
           className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-          placeholder="Search in shikhonbd..."
+          placeholder="Search in shikhonbd ....."
           required
         />
       </div>
-      <button
-        type="submit"
-        className="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
-      >
+      <button className="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
         <IoSearchOutline size={18} />
         <span className="sr-only">Search</span>
       </button>
-    </form>
+    </div>
   );
 };
 

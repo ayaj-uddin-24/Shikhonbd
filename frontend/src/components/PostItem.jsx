@@ -14,9 +14,13 @@ const PostItem = ({ id, imageUrl, title, createdAt }) => {
         className="w-20 h-16 object-cover rounded-lg"
       />
       <div>
-        <h3 className="text-sm font-semibold leading-tight">{title}</h3>
+        <p className="text-sm font-semibold leading-tight">{title}</p>
         <p className="text-xs text-gray-500 mt-1">
-          {new Date(createdAt).toLocaleString()}
+          {new Date(createdAt).toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })}
         </p>
       </div>
     </Link>

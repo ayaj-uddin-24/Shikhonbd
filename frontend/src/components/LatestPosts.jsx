@@ -8,7 +8,7 @@ const LatestPosts = () => {
 
   useEffect(() => {
     if (posts && posts.length > 0) {
-      setLatestPosts(posts.slice(0, 5));
+      setLatestPosts(posts.slice(-5));
     }
   }, [posts]);
 
@@ -16,7 +16,7 @@ const LatestPosts = () => {
     <div className="container mx-auto p-4 mt-5">
       {/* Header */}
       <div className="border-b-2 pb-2 mb-4 flex items-center">
-        <h2 className="text-lg font-bold">Latest</h2>
+        <p className="text-lg font-bold">Latest</p>
       </div>
 
       {/* News Grid */}

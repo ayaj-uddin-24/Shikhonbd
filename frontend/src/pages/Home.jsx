@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -50,9 +50,9 @@ const Home = () => {
                   alt={article.title}
                 />
                 <div className="p-5 bg-white">
-                  <h5 className="mb-2 text-md font-bold tracking-tight text-gray-800">
+                  <p className="mb-2 text-md font-bold tracking-tight text-gray-800">
                     {article.title}
-                  </h5>
+                  </p>
                   <p
                     className="mb-3 font-normal text-sm text-gray-600"
                     dangerouslySetInnerHTML={{

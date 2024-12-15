@@ -3,11 +3,9 @@ import React from "react";
 const TermsAndConditions = () => {
   return (
     <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-5">
-      <p className="text-3xl font-bold">শর্তাবলি</p>
+      <p className="text-3xl font-bold">শর্তাবলী এবং নিয়মাবলী</p>
       <br />
-      <p className="font-bold">
-        শিখনবিডির পিডিএফ ফাইল ব্যবহার নীতিমালা :
-      </p>
+      <p className="font-bold">শিখনবিডির পিডিএফ ফাইল ব্যবহার নীতিমালা :</p>
       <br />
       <p>
         শিখনবিডি সবার জন্য বিনামূল্যে পিডিএফ নোট, শীট এবং সাজেশন প্রকাশ করে
@@ -29,7 +27,7 @@ const TermsAndConditions = () => {
         শিখনবিডি ব্যবহার করুন নিম্নলিখিত শর্ত সাপেক্ষে :
       </p>
       <br />
-      <ul>
+      <ol className="pl-12">
         <li>
           {" "}
           শিখনবিডি'তে প্রকাশ করা নিবন্ধগুলো আপনার সাধারণ তথ্য এবং কেবল
@@ -53,7 +51,7 @@ const TermsAndConditions = () => {
           ওয়েবসাইটের সকল কর্মকাণ্ড সমর্থন করি। লিঙ্কযুক্ত ওয়েবসাইট (গুলো) এর
           সামগ্রীর জন্য আমাদের কোনও দায়বদ্ধতা নই।
         </li>
-      </ul>
+      </ol>
       <br />
       <p>
         সর্বপরি শিখনবিডির সকল তথ্যবলী আপনার ব্যক্তিগত কাজের জন্য ব্যবহার করুন।
@@ -64,7 +62,7 @@ const TermsAndConditions = () => {
       <br />
       <p className="font-bold">আপনি অবশ্যই যা থেকে বিরত থাকবেন :</p>
       <br />
-      <ul>
+      <ol className="pl-12">
         <li> শিখনবিডির নিবন্ধগুলো অন্য কোনো ওয়েবসাইটে প্রকাশ করবেন না।</li>
         <li>
           শিখনবিডির ছবি বা ভিডিওগুলো অন্য কোনো ওয়েবসাইটে প্রকাশ করবেন না।
@@ -72,7 +70,7 @@ const TermsAndConditions = () => {
         <li>
           শিখনবিডির সকল উপকরণ বাণিজ্যিক উদ্দেশ্যে ব্যবহার থেকে বিরত থাকবেন।
         </li>
-      </ul>
+      </ol>
 
       <br />
       <br />
@@ -101,7 +99,7 @@ const TermsAndConditions = () => {
         Use ShikhonBD under the following conditions :{" "}
       </p>
       <br />
-      <ul>
+      <ol className="pl-12">
         <li>
           The articles published on ShikhonBD are for general information and
           personal use only. We reserve the right to modify these materials
@@ -122,7 +120,7 @@ const TermsAndConditions = () => {
           imply that we endorse all activities on those websites. We are not
           liable for the content of linked websites.
         </li>
-      </ul>
+      </ol>
       <br />
       <p>
         In summary, use all information and materials from ShikhonBD strictly
@@ -133,13 +131,13 @@ const TermsAndConditions = () => {
       <br />
       <p className="font-bold">Prohibited Activities : </p>
       <br />
-      <ul>
+      <ol className="pl-12">
         <li> Do not publish ShikhonBD's articles on any other website.</li>
         <li>Do not share ShikhonBD's images or videos on other platforms.</li>
         <li>
           Refrain from using ShikhonBD's materials for commercial purposes.{" "}
         </li>
-      </ul>
+      </ol>
     </div>
   );
 };

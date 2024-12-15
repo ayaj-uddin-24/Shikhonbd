@@ -25,20 +25,26 @@ const TopPosts = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Main News Section */}
         <Link
-          to={`/post/${encodeURIComponent(popularPosts[0].title)}`}
+          to={`/post/${encodeURIComponent(
+            popularPosts[popularPosts.length - 1].title
+          )}`}
           className="md:col-span-2"
         >
           <img
-            src={popularPosts[0].imageUrl}
+            src={popularPosts[popularPosts.length - 1].imageUrl}
             alt="Main News"
             className="w-full rounded-lg"
           />
           <div className="mt-4">
-            <h3 className="text-lg font-semibold">{popularPosts[0].title}</h3>
+            <p className="text-lg font-semibold">
+              {popularPosts[popularPosts.length - 1].title}
+            </p>
             <p
               className="text-gray-600 mt-2 text-sm"
               dangerouslySetInnerHTML={{
-                __html: popularPosts[0].content.slice(0, 250) + "....",
+                __html:
+                  popularPosts[popularPosts.length - 1].content.slice(0, 250) +
+                  "....",
               }}
             ></p>
           </div>

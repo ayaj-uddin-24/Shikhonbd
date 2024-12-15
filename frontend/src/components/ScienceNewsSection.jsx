@@ -17,7 +17,7 @@ const ScienceNewsSection = () => {
     <div className="container mx-auto p-4">
       {/* Header */}
       <div className="border-b-2 pb-2 mb-4 flex items-center">
-        <h2 className="text-lg font-bold">বিজ্ঞান</h2>
+        <p className="text-lg font-bold">বিজ্ঞান</p>
       </div>
 
       {/* Science News Grid */}

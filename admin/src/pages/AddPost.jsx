@@ -13,6 +13,22 @@ const AddPost = () => {
     category: "",
     popular: false,
   });
+
+  const modules = {
+    toolbar: {
+      container: [
+        [{ header: "1" }, { header: "2" }, { font: [] }],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["bold", "italic", "underline", "strike"],
+        ["blockquote", "code-block"],
+        [{ align: [] }],
+        [{ color: [] }, { background: [] }],
+        ["link", "image"],
+        ["clean"],
+      ],
+    },
+  };
+
   const quillRef = useRef(null);
 
   const handleInputChange = (event) => {
@@ -73,7 +89,7 @@ const AddPost = () => {
 
   return (
     <div className="px-5 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] py-10">
-      <h1 className="text-3xl font-bold text-center">New Post</h1>
+      <p className="text-3xl font-bold text-center">New Post</p>
 
       <form
         action="#"
@@ -98,6 +114,7 @@ const AddPost = () => {
           className="h-[250px] mb-16"
           value={postData.content}
           onChange={handleContentChange}
+          modules={modules}
         />
 
         <p className="pb-2 pt-4 text-gray-600">Post Category : </p>

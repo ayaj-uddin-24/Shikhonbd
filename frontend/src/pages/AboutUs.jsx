@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-5">
+    <div className="px-5 sm:px-[5vw] lg:px-[9vw] py-10">
       <p className="text-3xl font-bold">আমাদের সম্পর্কে</p>
       <br />
       <p>
@@ -26,8 +26,9 @@ const AboutUs = () => {
         পারে।
       </p>
       <br />
-      <p className="font-bold">এক নজরে আমাদের লেখার বিষয়বস্তুগুলো :</p><br />
-      <ul className="list-decimal pl-12">
+      <p className="font-bold">এক নজরে আমাদের লেখার বিষয়বস্তুগুলো :</p>
+      <br />
+      <ol className="pl-12">
         <li>বাংলাদেশের বিভিন্ন স্কুল ও কলেজের ভর্তি পরীক্ষার তথ্যসমূহ।</li>
         <li>
           প্রতিটি ক্লাসের জন্য আপডেট সিলেবাস শিক্ষার্থীদের জন্য সহজ পরামর্শ এবং
@@ -41,7 +42,7 @@ const AboutUs = () => {
           প্রতিনিয়ত প্রকাশিত হয়। আসুন একসাথে শিখি, বড় হই, এবং সাফল্যের দিকে
           এগিয়ে যাই।
         </li>
-      </ul>
+      </ol>
       <br />
       <p className="font-bold">শিখনবিডি – আপনার জ্ঞান অর্জনের সহজতম পথ।</p>
       <br />
@@ -75,7 +76,7 @@ const AboutUs = () => {
       <br />
       <p className="font-bold">At a glance, our content includes :</p>
       <br />
-      <ul>
+      <ol className="pl-12">
         <li>
           Information about admission tests for various schools and colleges in
           Bangladesh.
@@ -90,7 +91,7 @@ const AboutUs = () => {
           Questions and solutions for exams from schools, colleges,
           universities, and all levels of job recruitment exams in Bangladesh.
         </li>
-      </ul>
+      </ol>
       <br />
       <p>
         We consistently publish more educational content on the ShikhonBD

@@ -24,8 +24,9 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between py-2 px-5 sm:px-[5vw] lg:px-[9vw] shadow font-medium">
       {/* Logo */}
-      <Link to="/" className="text-2xl font-semibold">
+      <Link to="/" className="text-2xl font-semibold flex items-center gap-3">
         <img src="/shikhon.png" className="w-20 h-16" alt="Logo" />
+        <p className="text-blue-600">Shikhonbd</p>
       </Link>
 
       {/* Desktop menu */}
