@@ -49,9 +49,9 @@ const Post = () => {
   if (!postDetails) {
     return (
       <div className="container mx-auto p-4">
-        <h3 className="text-center text-2xl font-bold text-red-600">
+        <h1 className="text-center text-2xl font-bold text-red-600">
           Post not found!
-        </h3>
+        </h1>
       </div>
     );
   }
