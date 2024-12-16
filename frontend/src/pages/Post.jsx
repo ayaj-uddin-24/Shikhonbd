@@ -1,34 +1,29 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { BlogContext } from "../contexts/BlogContext";
 import Loading from "../components/Loading";
 import { Helmet } from "react-helmet";
 import {
-  EmailIcon,
+  FacebookShareButton,
+  TwitterShareButton,
+  PinterestShareButton,
+  WhatsappShareButton,
   EmailShareButton,
   FacebookIcon,
-  FacebookShareButton,
-  PinterestIcon,
-  PinterestShareButton,
   TwitterIcon,
-  TwitterShareButton,
+  PinterestIcon,
   WhatsappIcon,
-  WhatsappShareButton,
+  EmailIcon,
 } from "react-share";
 import PostItem from "../components/PostItem";
-
-const sanitizeHTML = (html) => {
-  const parser = new DOMParser();
-  const parsedDoc = parser.parseFromString(html, "text/html");
-  return parsedDoc.body.innerHTML;
-};
 
 const Post = () => {
   const { posts, loading } = useContext(BlogContext);
   const { title } = useParams();
   const [postDetails, setPostDetails] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
-  const decodeTitle = decodeURIComponent(title);
+  const decodeTitle = useMemo(() => decodeURIComponent(title), [title]);
+  const shareUrl = useMemo(() => window.location.href, []);
 
   useEffect(() => {
     const post = posts.find((p) => p.title === decodeTitle);
@@ -38,13 +33,11 @@ const Post = () => {
       const related = posts.filter(
         (p) => p.category === post.category && p._id !== post._id
       );
-      setRelatedPosts(related);
+      setRelatedPosts(related.slice(0, 5)); // Limit initial related posts
     }
   }, [posts, decodeTitle]);
 
-  if (loading) {
-    return <Loading />;
-  }
+  if (loading) return <Loading />;
 
   if (!postDetails) {
     return (
@@ -56,84 +49,43 @@ const Post = () => {
     );
   }
 
-  const shareUrl = window.location.href;
-  const titleText = postDetails.title;
-
   return (
     <div className="container mx-auto p-6 px-5 sm:px-[5vw] lg:px-[9vw]">
       <Helmet>
-        <title>{postDetails.title}</title>
+        <title>{postDetails.title} | Blog</title>
       </Helmet>
-      {postDetails.imageUrl && (
-        <img
-          src={postDetails.imageUrl}
-          alt={postDetails.title}
-          className="w-full rounded-lg mb-5"
-        />
-      )}
-      <h2 className="text-3xl font-bold text-gray-800">{postDetails.title}</h2>
-      <div className="mt-2 mb-4 text-sm text-gray-500">
-        <p>
-          Category: <span className="font-medium">{postDetails.category}</span>
-        </p>
-        <p>Published on: {new Date(postDetails.createdAt).toLocaleString()}</p>
-      </div>
-
-      <div className="post">
-        <div
-          className="text-gray-700 leading-7"
-          dangerouslySetInnerHTML={{
-            __html: sanitizeHTML(postDetails.content),
-          }}
-        ></div>
-      </div>
-
-      <div className="mt-6 flex items-center gap-4">
-        <span className="font-medium text-gray-700 block mb-2">Share : </span>
-        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-          <FacebookShareButton url={shareUrl} quote={titleText}>
-            <FacebookIcon size={40} round />
+      <img
+        src={postDetails.imageUrl}
+        alt={postDetails.title}
+        className="w-full rounded-lg mb-5"
+        loading="lazy"
+      />
+      <h1 className="text-3xl font-bold text-gray-800">{postDetails.title}</h1>
+      <p className="mt-2 text-gray-500">
+        Published on: {new Date(postDetails.createdAt).toLocaleString()}
+      </p>
+      <div
+        className="mt-5 text-gray-700"
+        dangerouslySetInnerHTML={{ __html: postDetails.content }}
+      ></div>
+      <div className="mt-6">
+        <h3 className="font-bold text-lg mb-2">Share this post:</h3>
+        <div className="flex space-x-3">
+          <FacebookShareButton url={shareUrl}>
+            <FacebookIcon size={32} round />
           </FacebookShareButton>
-          <TwitterShareButton url={shareUrl} title={titleText}>
-            <TwitterIcon size={40} round />
+          <TwitterShareButton url={shareUrl}>
+            <TwitterIcon size={32} round />
           </TwitterShareButton>
-          <PinterestShareButton
-            url={shareUrl}
-            media={postDetails.imageUrl || ""}
-            description={titleText}
-          >
-            <PinterestIcon size={40} round />
+          <PinterestShareButton url={shareUrl} media={postDetails.imageUrl}>
+            <PinterestIcon size={32} round />
           </PinterestShareButton>
-          <WhatsappShareButton url={shareUrl} title={titleText}>
-            <WhatsappIcon size={40} round />
+          <WhatsappShareButton url={shareUrl}>
+            <WhatsappIcon size={32} round />
           </WhatsappShareButton>
-          <EmailShareButton url={shareUrl} subject={titleText}>
-            <EmailIcon size={40} round />
+          <EmailShareButton url={shareUrl}>
+            <EmailIcon size={32} round />
           </EmailShareButton>
-        </div>
-      </div>
-
-      <div className="mt-10">
-        <h3 className="text-2xl font-bold mb-5">Related Posts</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {relatedPosts.length > 0 ? (
-            relatedPosts.map((post) => (
-              <Link
-                key={post._id}
-                to={`/post/${encodeURIComponent(post.title)}`}
-              >
-                <PostItem
-                  id={post._id}
-                  imageUrl={post.imageUrl}
-                  title={post.title}
-                  content={post.content}
-                  createdAt={post.createdAt}
-                />
-              </Link>
-            ))
-          ) : (
-            <p>No related posts available here</p>
-          )}
         </div>
       </div>
     </div>
