@@ -68,7 +68,7 @@ const Post = () => {
   const titleText = postDetails.title;
 
   return (
-    <div className="container mx-auto p-6 px-5 sm:px-[5vw] lg:px-[9vw] post">
+    <div className="container mx-auto p-6 px-5 sm:px-[5vw] lg:px-[9vw]">
       <Helmet>
         <title>{postDetails.title} | ShikhonBD</title>
         <meta
@@ -87,7 +87,7 @@ const Post = () => {
         <link rel="canonical" href={shareUrl} />
       </Helmet>
 
-      <article>
+      <article className="post">
         {postDetails.imageUrl && (
           <img
             src={postDetails.imageUrl}
@@ -95,9 +95,7 @@ const Post = () => {
             className="w-full rounded-lg mb-5"
           />
         )}
-        <h1 className="font-bold text-gray-800">
-          {postDetails.title}
-        </h1>
+        <h1 className="font-bold text-gray-800">{postDetails.title}</h1>
         <div className="mt-2 mb-4 text-sm text-gray-500">
           <p>
             Category:{" "}
