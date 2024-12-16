@@ -22,31 +22,39 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between py-2 px-5 sm:px-[5vw] lg:px-[9vw] shadow font-medium">
+    <nav
+      className="flex items-center justify-between py-2 px-5 sm:px-[5vw] lg:px-[9vw] shadow font-medium"
+      aria-label="Main Navigation"
+    >
       {/* Logo */}
       <Link to="/" className="text-2xl font-semibold flex items-center gap-3">
-        <img src="/shikhon.png" className="w-20 h-16" alt="Logo" />
+        <img src="/shikhon.png" className="w-20 h-16" alt="Shikhonbd Logo" />
         <p className="text-blue-600">Shikhonbd</p>
       </Link>
 
       {/* Desktop menu */}
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700 list-none">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `flex flex-col items-center gap-1 ${
-              isActive ? "text-blue-600 font-bold" : "text-gray-700"
-            }`
-          }
-        >
-          হোম
-        </NavLink>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `flex flex-col items-center gap-1 ${
+                isActive ? "text-blue-600 font-bold" : "text-gray-700"
+              }`
+            }
+            aria-label="Home"
+          >
+            হোম
+          </NavLink>
+        </li>
 
         {/* Job dropdown menu */}
         <li className="relative">
           <button
             onClick={() => toggleDropdown("job")}
             className="flex items-center gap-2"
+            aria-expanded={dropdowns.job}
+            aria-label="Job Menu"
           >
             <p>চাকরি</p>
             <IoMdArrowDropdown
@@ -78,6 +86,8 @@ const Navbar = () => {
           <button
             onClick={() => toggleDropdown("curriculum")}
             className="flex items-center gap-2"
+            aria-expanded={dropdowns.curriculum}
+            aria-label="Curriculum Menu"
           >
             <p>শিক্ষাক্রম</p>
             <IoMdArrowDropdown
@@ -103,30 +113,40 @@ const Navbar = () => {
           )}
         </li>
 
-        <NavLink
-          to="/বিজ্ঞান"
-          className={({ isActive }) =>
-            `flex flex-col items-center gap-1 ${
-              isActive ? "text-blue-600 font-bold" : "text-gray-700"
-            }`
-          }
-        >
-          বিজ্ঞান
-        </NavLink>
-        <NavLink
-          to="/প্রযুক্তি"
-          className={({ isActive }) =>
-            `flex flex-col items-center gap-1 ${
-              isActive ? "text-blue-600 font-bold" : "text-gray-700"
-            }`
-          }
-        >
-          প্রযুক্তি
-        </NavLink>
+        <li>
+          <NavLink
+            to="/বিজ্ঞান"
+            className={({ isActive }) =>
+              `flex flex-col items-center gap-1 ${
+                isActive ? "text-blue-600 font-bold" : "text-gray-700"
+              }`
+            }
+            aria-label="Science"
+          >
+            বিজ্ঞান
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/প্রযুক্তি"
+            className={({ isActive }) =>
+              `flex flex-col items-center gap-1 ${
+                isActive ? "text-blue-600 font-bold" : "text-gray-700"
+              }`
+            }
+            aria-label="Technology"
+          >
+            প্রযুক্তি
+          </NavLink>
+        </li>
       </ul>
 
       {/* Mobile menu button */}
-      <button onClick={() => setVisible(!visible)} className="sm:hidden">
+      <button
+        onClick={() => setVisible(!visible)}
+        className="sm:hidden"
+        aria-label="Menu"
+      >
         <img src="/menu_icon.png" alt="Menu Icon" className="w-5" />
       </button>
 
@@ -135,10 +155,12 @@ const Navbar = () => {
         className={`fixed top-0 right-0 bottom-0 w-64 bg-slate-100 z-50 transition-transform transform ${
           visible ? "translate-x-0" : "translate-x-full"
         }`}
+        aria-hidden={!visible}
       >
         <button
           onClick={() => setVisible(false)}
           className="p-3 flex items-center gap-3"
+          aria-label="Close Menu"
         >
           <img
             src="/dropdown_icon.png"
@@ -152,6 +174,7 @@ const Navbar = () => {
             to="/"
             onClick={() => setVisible(false)}
             className="border p-6"
+            aria-label="Home"
           >
             হোম
           </NavLink>
@@ -161,6 +184,8 @@ const Navbar = () => {
             <button
               onClick={() => toggleDropdown("mobileJob")}
               className="flex justify-between items-center px-6 py-4 bg-gray-100"
+              aria-expanded={dropdowns.mobileJob}
+              aria-label="Mobile Job Menu"
             >
               <span>চাকরি</span>
               <IoMdArrowDropdown
@@ -193,6 +218,8 @@ const Navbar = () => {
             <button
               onClick={() => toggleDropdown("mobileCurriculum")}
               className="flex justify-between items-center px-6 py-4 bg-gray-100"
+              aria-expanded={dropdowns.mobileCurriculum}
+              aria-label="Mobile Curriculum Menu"
             >
               <span>শিক্ষাক্রম</span>
               <IoMdArrowDropdown
@@ -223,6 +250,7 @@ const Navbar = () => {
             to="/বিজ্ঞান"
             onClick={() => setVisible(false)}
             className="border p-6"
+            aria-label="Science"
           >
             বিজ্ঞান
           </NavLink>
@@ -230,6 +258,7 @@ const Navbar = () => {
             to="/প্রযুক্তি"
             onClick={() => setVisible(false)}
             className="border p-6"
+            aria-label="Technology"
           >
             প্রযুক্তি
           </NavLink>

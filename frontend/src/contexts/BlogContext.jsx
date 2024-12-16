@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { url } from "../App";
 
@@ -8,29 +8,51 @@ const BlogContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const getPosts = async () => {
-    const res = await axios.get(`${url}/api/post/get-post`);
-
-    if (res.data.success) {
-      setPosts(res.data.posts);
+  const getPosts = useCallback(async () => {
+    try {
+      const res = await axios.get(`${url}/api/post/get-post`);
+      if (res.data.success) {
+        setPosts(res.data.posts);
+      }
+    } catch (err) {
+      setError("Failed to fetch posts");
+    } finally {
+      setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [getPosts]);
+
+  const debouncedSearch = useCallback(
+    debounce((value) => {
+      setSearchTerm(value);
+    }, 300),
+    []
+  );
 
   const value = {
     posts,
     setPosts,
     searchTerm,
-    setSearchTerm,
+    setSearchTerm: debouncedSearch,
     loading,
     setLoading,
+    error,
   };
 
   return <BlogContext.Provider value={value}>{children}</BlogContext.Provider>;
 };
+
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
 
 export default BlogContextProvider;

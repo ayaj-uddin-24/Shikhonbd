@@ -41,10 +41,18 @@ const CategoryPosts = () => {
 
   return (
     <div className="bg-white text-black">
+      {/* SEO Meta Tags */}
       <Helmet>
-        <title>{category}</title>
+        <title>{`Posts in ${category} - My Blog`}</title>
+        <meta
+          name="description"
+          content={`Discover insightful posts about ${category}. Explore articles that match your interests.`}
+        />
       </Helmet>
-      <h2 className="text-3xl font-bold p-5 mt-5">{category}</h2>
+
+      <h1 className="text-3xl font-bold p-5 mt-5">{category}</h1>
+
+      {/* Post Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-5 mt-5">
         {currentPosts.map((article) => (
           <Link
@@ -52,26 +60,28 @@ const CategoryPosts = () => {
             key={article._id}
             className="max-w-sm bg-white border border-gray-300 rounded-lg shadow-lg"
           >
-            <img
-              className="rounded-t-lg"
-              src={article.imageUrl}
-              alt={article.title}
-            />
-            <div className="p-5 bg-white">
-              <p className="mb-2 text-md font-bold tracking-tight text-gray-800">
-                {article.title}
-              </p>
-              <p
-                className="mb-3 font-normal text-sm text-gray-600"
-                dangerouslySetInnerHTML={{
-                  __html: article.content.slice(0, 100) + ".....",
-                }}
-              ></p>
-              <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                Read more
-                <FaArrowRight className="ps-2 pt-[3px]" size={22} />
-              </button>
-            </div>
+            <article>
+              <img
+                className="rounded-t-lg"
+                src={article.imageUrl}
+                alt={`Image for ${article.title}`}
+              />
+              <div className="p-5 bg-white">
+                <h4 className="mb-2 font-bold tracking-tight text-gray-800">
+                  {article.title}
+                </h4>
+                <p
+                  className="mb-3 font-normal text-sm text-gray-600"
+                  dangerouslySetInnerHTML={{
+                    __html: article.content.slice(0, 100) + ".....",
+                  }}
+                ></p>
+                <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                  Read more
+                  <FaArrowRight className="ps-2 pt-[3px]" size={22} />
+                </button>
+              </div>
+            </article>
           </Link>
         ))}
       </div>
@@ -91,6 +101,13 @@ const CategoryPosts = () => {
             {index + 1}
           </button>
         ))}
+        {/* SEO Pagination Links */}
+        {currentPage > 1 && (
+          <link rel="prev" href={`?page=${currentPage - 1}`} />
+        )}
+        {currentPage < totalPages && (
+          <link rel="next" href={`?page=${currentPage + 1}`} />
+        )}
       </div>
     </div>
   );

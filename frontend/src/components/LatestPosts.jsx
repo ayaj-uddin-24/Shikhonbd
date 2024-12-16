@@ -13,11 +13,16 @@ const LatestPosts = () => {
   }, [posts]);
 
   return (
-    <div className="container mx-auto p-4 mt-5">
+    <section
+      className="container mx-auto p-4 mt-5"
+      aria-labelledby="latest-posts-header"
+    >
       {/* Header */}
-      <div className="border-b-2 pb-2 mb-4 flex items-center">
-        <h1 className="text-lg font-bold">Latest</h1>
-      </div>
+      <header className="border-b-2 pb-2 mb-4 flex items-center">
+        <h1 id="latest-posts-header" className="text-lg font-bold">
+          Latest Posts
+        </h1>
+      </header>
 
       {/* News Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -29,13 +34,14 @@ const LatestPosts = () => {
               title={item.title}
               imageUrl={item.imageUrl}
               createdAt={item.createdAt}
+              alt={item.title}
             />
           ))
         ) : (
           <p>No Post Available</p>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

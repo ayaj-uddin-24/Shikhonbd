@@ -14,11 +14,16 @@ const ScienceNewsSection = () => {
   }, [posts]);
 
   return (
-    <div className="container mx-auto p-4">
+    <section
+      className="container mx-auto p-4"
+      aria-labelledby="science-news-header"
+    >
       {/* Header */}
-      <div className="border-b-2 pb-2 mb-4 flex items-center">
-        <p className="text-lg font-bold">বিজ্ঞান</p>
-      </div>
+      <header className="border-b-2 pb-2 mb-4 flex items-center">
+        <h2 id="science-news-header" className="text-lg font-bold">
+          বিজ্ঞান
+        </h2>
+      </header>
 
       {/* Science News Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -30,13 +35,14 @@ const ScienceNewsSection = () => {
               title={item.title}
               imageUrl={item.imageUrl}
               createdAt={item.createdAt}
+              alt={item.title}
             />
           ))
         ) : (
           <p>No Post Available</p>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

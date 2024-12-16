@@ -20,7 +20,15 @@ import PostItem from "../components/PostItem";
 const sanitizeHTML = (html) => {
   const parser = new DOMParser();
   const parsedDoc = parser.parseFromString(html, "text/html");
-  return parsedDoc.body.innerHTML;
+  const sanitizedContent = parsedDoc.body.innerHTML;
+
+  // Remove potentially harmful tags like <script> or <iframe>
+  const div = document.createElement("div");
+  div.innerHTML = sanitizedContent;
+  Array.from(div.querySelectorAll("script, iframe")).forEach((el) =>
+    el.remove()
+  );
+  return div.innerHTML;
 };
 
 const Post = () => {
@@ -28,10 +36,10 @@ const Post = () => {
   const { title } = useParams();
   const [postDetails, setPostDetails] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
-  const decodeTitle = decodeURIComponent(title);
+  const decodedTitle = decodeURIComponent(title);
 
   useEffect(() => {
-    const post = posts.find((p) => p.title === decodeTitle);
+    const post = posts.find((p) => p.title === decodedTitle);
     setPostDetails(post);
 
     if (post) {
@@ -40,7 +48,7 @@ const Post = () => {
       );
       setRelatedPosts(related);
     }
-  }, [posts, decodeTitle]);
+  }, [posts, decodedTitle]);
 
   if (loading) {
     return <Loading />;
@@ -60,61 +68,85 @@ const Post = () => {
   const titleText = postDetails.title;
 
   return (
-    <div className="container mx-auto p-6 px-5 sm:px-[5vw] lg:px-[9vw]">
+    <div className="container mx-auto p-6 px-5 sm:px-[5vw] lg:px-[9vw] post">
       <Helmet>
-        <title>{postDetails.title}</title>
-      </Helmet>
-      {postDetails.imageUrl && (
-        <img
-          src={postDetails.imageUrl}
-          alt={postDetails.title}
-          className="w-full rounded-lg mb-5"
+        <title>{postDetails.title} | ShikhonBD</title>
+        <meta
+          name="description"
+          content={postDetails.content
+            .slice(0, 150)
+            .replace(/<\/?[^>]+(>|$)/g, "")}
         />
-      )}
-      <h2 className="text-3xl font-bold text-gray-800">{postDetails.title}</h2>
-      <div className="mt-2 mb-4 text-sm text-gray-500">
-        <p>
-          Category: <span className="font-medium">{postDetails.category}</span>
-        </p>
-        <p>Published on: {new Date(postDetails.createdAt).toLocaleString()}</p>
-      </div>
+        <meta property="og:title" content={postDetails.title} />
+        <meta
+          property="og:description"
+          content={postDetails.content.slice(0, 150)}
+        />
+        <meta property="og:image" content={postDetails.imageUrl} />
+        <meta property="og:url" content={shareUrl} />
+        <link rel="canonical" href={shareUrl} />
+      </Helmet>
 
-      <div className="post">
-        <div
-          className="text-gray-700 leading-7"
+      <article>
+        {postDetails.imageUrl && (
+          <img
+            src={postDetails.imageUrl}
+            alt={postDetails.title || "Post image"}
+            className="w-full rounded-lg mb-5"
+          />
+        )}
+        <h1 className="font-bold text-gray-800">
+          {postDetails.title}
+        </h1>
+        <div className="mt-2 mb-4 text-sm text-gray-500">
+          <p>
+            Category:{" "}
+            <span className="font-medium">{postDetails.category}</span>
+          </p>
+          <p>
+            Published on: {new Date(postDetails.createdAt).toLocaleDateString()}
+          </p>
+        </div>
+
+        <section
+          className="post-content text-gray-700 leading-7"
           dangerouslySetInnerHTML={{
             __html: sanitizeHTML(postDetails.content),
           }}
-        ></div>
-      </div>
+        ></section>
+      </article>
 
-      <div className="mt-6 flex items-center gap-4">
-        <span className="font-medium text-gray-700 block mb-2">Share : </span>
-        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-          <FacebookShareButton url={shareUrl} quote={titleText}>
-            <FacebookIcon size={40} round />
-          </FacebookShareButton>
-          <TwitterShareButton url={shareUrl} title={titleText}>
-            <TwitterIcon size={40} round />
-          </TwitterShareButton>
-          <PinterestShareButton
-            url={shareUrl}
-            media={postDetails.imageUrl || ""}
-            description={titleText}
-          >
-            <PinterestIcon size={40} round />
-          </PinterestShareButton>
-          <WhatsappShareButton url={shareUrl} title={titleText}>
-            <WhatsappIcon size={40} round />
-          </WhatsappShareButton>
-          <EmailShareButton url={shareUrl} subject={titleText}>
-            <EmailIcon size={40} round />
-          </EmailShareButton>
+      {/* Social Sharing Section */}
+      <section className="mt-6">
+        <div className="flex items-center gap-4">
+          <span className="font-medium text-gray-700">Share:</span>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <FacebookShareButton url={shareUrl} quote={titleText}>
+              <FacebookIcon size={40} round />
+            </FacebookShareButton>
+            <TwitterShareButton url={shareUrl} title={titleText}>
+              <TwitterIcon size={40} round />
+            </TwitterShareButton>
+            <PinterestShareButton
+              url={shareUrl}
+              media={postDetails.imageUrl || ""}
+              description={titleText}
+            >
+              <PinterestIcon size={40} round />
+            </PinterestShareButton>
+            <WhatsappShareButton url={shareUrl} title={titleText}>
+              <WhatsappIcon size={40} round />
+            </WhatsappShareButton>
+            <EmailShareButton url={shareUrl} subject={titleText}>
+              <EmailIcon size={40} round />
+            </EmailShareButton>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="mt-10">
-        <h3 className="text-2xl font-bold mb-5">Related Posts</h3>
+      {/* Related Posts Section */}
+      <section className="mt-10">
+        <h2 className="text-2xl font-bold mb-5">Related Posts</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {relatedPosts.length > 0 ? (
             relatedPosts.map((post) => (
@@ -135,7 +167,7 @@ const Post = () => {
             <p>No related posts available here</p>
           )}
         </div>
-      </div>
+      </section>
     </div>
   );
 };
