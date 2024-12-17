@@ -100,6 +100,7 @@ const Navbar = () => {
               {[
                 { to: "/Job Solution", text: "Job Solution" },
                 { to: "/Academic Solution", text: "Academic Solution" },
+                { to: "/Notice", text: "Notice" },
               ].map((item) => (
                 <NavLink
                   key={item.to}
@@ -232,6 +233,7 @@ const Navbar = () => {
                 {[
                   { to: "/Job Solution", text: "Job Solution" },
                   { to: "/Academic Solution", text: "Academic Solution" },
+                  { to: "/Notice", text: "Notice" },
                 ].map((item) => (
                   <NavLink
                     key={item.to}

@@ -146,6 +146,7 @@ const UpdatePost = () => {
           <option value="বিজ্ঞান">বিজ্ঞান</option>
           <option value="Job Solution">Job Solution</option>
           <option value="Academic Solution">Academic Solution</option>
+          <option value="Notice">Notice</option>
         </select>
 
         <div>
