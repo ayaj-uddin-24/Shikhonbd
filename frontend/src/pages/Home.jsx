@@ -40,7 +40,7 @@ const Home = () => {
           name="description"
           content="Welcome to ShikhonBD! Explore the latest posts, job news, science updates, and more. Stay informed with top and latest articles."
         />
-        <link rel="canonical" href="https://www.shikhonbd.com/" />
+        <link rel="canonical" href="https://shikhonbd.com/" />
       </Helmet>
 
       {/* Search Section */}
