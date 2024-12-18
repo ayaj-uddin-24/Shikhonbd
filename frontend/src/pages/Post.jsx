@@ -95,7 +95,7 @@ const Post = () => {
             className="w-full rounded-lg mb-5"
           />
         )}
-        <h1 className="font-bold text-gray-800">{postDetails.title}</h1>
+        <h1 className="font-bold text-gray-800 text-xl sm:text-2xl md:text-3xl lg:text-4xl">{postDetails.title}</h1>
         <div className="mt-2 mb-4 text-sm text-gray-500">
           <p>
             Category:{" "}
