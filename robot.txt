@@ -1,0 +1,17 @@
+# Allow all bots to crawl the entire site
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Disallow: /private/
+
+# Allow access to specific sections
+Allow: /public/
+Allow: /images/
+Allow: /css/
+
+# Block specific bots (example: blocking Googlebot from a specific page)
+User-agent: Googlebot
+Disallow: /no-google/
+
+# Sitemap location for the website
+Sitemap: https://www.shikhonbd.com/sitemap.xml
