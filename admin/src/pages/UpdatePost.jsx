@@ -18,6 +18,13 @@ const UpdatePost = () => {
     popular: false,
   });
 
+  useEffect(() => {
+    if (quillRef.current) {
+      const editor = quillRef.current.getEditor();
+      editor.root.setAttribute("lang", "bn");
+    }
+  }, []);
+
   const modules = {
     toolbar: {
       container: [

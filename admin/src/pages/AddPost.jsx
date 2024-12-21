@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { url } from "../App";
 import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
@@ -30,6 +30,13 @@ const AddPost = () => {
   };
 
   const quillRef = useRef(null);
+
+  useEffect(() => {
+    if (quillRef.current) {
+      const editor = quillRef.current.getEditor();
+      editor.root.setAttribute("lang", "bn");
+    }
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap");
 
 a.active hr {
   display: block;
@@ -16,4 +17,8 @@ a.active hr {
 table tr th,
 table tr td {
   padding: 5px;
+}
+
+.ql-editor {
+  font-family: "Noto Sans Bengali", sans-serif;
 }
