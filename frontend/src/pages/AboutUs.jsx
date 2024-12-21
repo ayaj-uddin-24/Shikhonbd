@@ -7,9 +7,9 @@ const AboutUs = () => {
       <Helmet>
         <title>About Us - Shikhonbd</title>
         <meta
-          name="description"
-          content="Learn about Shikhonbd, one of the most popular educational websites in Bangladesh, offering articles and tips related to education and technology."
-        />
+      name="description"
+      content="Welcome to ShikhonBD! Explore the latest posts, job news, science updates, and more. Stay informed with top and latest articles."
+    />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
