@@ -29,7 +29,7 @@ const Navbar = () => {
       {/* Logo */}
       <Link to="/" className="text-2xl font-semibold flex items-center gap-3">
         <img src="/shikhon.png" className="w-20 h-16" alt="Shikhonbd Logo" />
-        <p className="text-blue-600">Shikhonbd</p>
+        <p className="text-blue-600">ShikhonBD</p>
       </Link>
 
       {/* Desktop menu */}
@@ -73,6 +73,7 @@ const Navbar = () => {
                   key={item.to}
                   to={item.to}
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
+                  onClick={() => toggleDropdown("job")}
                 >
                   {item.text}
                 </NavLink>
@@ -106,6 +107,7 @@ const Navbar = () => {
                   key={item.to}
                   to={item.to}
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-200"
+                  onClick={() => toggleDropdown("curriculam")}
                 >
                   {item.text}
                 </NavLink>

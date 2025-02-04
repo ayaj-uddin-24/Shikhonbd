@@ -9,26 +9,45 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-4">
           <div className="flex items-center gap-4">
             <img src="/shikhon.png" className="w-12" alt="Shikhonbd Logo" />
-            <p className="text-lg font-semibold">Shikhonbd</p>
+            <p className="text-lg font-semibold">ShikhonBD</p>
           </div>
-          <ul className="flex space-x-4 mt-4 md:mt-0 list-none" aria-label="Footer navigation">
+          <ul
+            className="flex space-x-4 mt-4 md:mt-0 list-none"
+            aria-label="Footer navigation"
+          >
             <li>
-              <Link to="/about-us" className="hover:text-blue-400" aria-label="About Us">
+              <Link
+                to="/about-us"
+                className="hover:text-blue-400"
+                aria-label="About Us"
+              >
                 About Us
               </Link>
             </li>
             <li>
-              <Link to="/contact-us" className="hover:text-blue-400" aria-label="Contact Us">
+              <Link
+                to="/contact-us"
+                className="hover:text-blue-400"
+                aria-label="Contact Us"
+              >
                 Contact Us
               </Link>
             </li>
             <li>
-              <Link to="/privacy-policy" className="hover:text-blue-400" aria-label="Privacy Policy">
+              <Link
+                to="/privacy-policy"
+                className="hover:text-blue-400"
+                aria-label="Privacy Policy"
+              >
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link to="/terms-and-conditions" className="hover:text-blue-400" aria-label="Terms and Conditions">
+              <Link
+                to="/terms-and-conditions"
+                className="hover:text-blue-400"
+                aria-label="Terms and Conditions"
+              >
                 Terms and Conditions
               </Link>
             </li>
@@ -41,7 +60,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="text-center">
           <p className="text-sm">
-            © {new Date().getFullYear()} Shikhonbd. All Rights Reserved.
+            © {new Date().getFullYear()} ShikhonBD. All Rights Reserved.
           </p>
         </div>
       </div>

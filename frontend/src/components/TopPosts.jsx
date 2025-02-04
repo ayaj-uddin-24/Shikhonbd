@@ -60,7 +60,7 @@ const TopPosts = () => {
         </article>
 
         {/* Sidebar Section */}
-        <aside className="space-y-4">
+        <aside className="space-y-4 h-screen overflow-y-scroll">
           {popularPosts.map((post) => (
             <PostItem
               key={post._id}

@@ -95,14 +95,26 @@ const Post = () => {
             className="w-full rounded-lg mb-5"
           />
         )}
-        <h1 className="font-bold text-gray-800 text-xl sm:text-2xl md:text-3xl lg:text-4xl">{postDetails.title}</h1>
+        <h1 className="font-bold text-gray-800 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+          {postDetails.title}
+        </h1>
         <div className="mt-2 mb-4 text-sm text-gray-500">
           <p>
-            Category:{" "}
+            Category :{" "}
             <span className="font-medium">{postDetails.category}</span>
           </p>
           <p>
-            Published on: {new Date(postDetails.createdAt).toLocaleDateString()}
+            Published on :{" "}
+            <time
+              className="text-xs text-gray-500 mt-1"
+              dateTime={new Date(postDetails.createdAt).toISOString()}
+            >
+              {new Date(postDetails.createdAt).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+            </time>
           </p>
         </div>
 

@@ -2,13 +2,13 @@ import React, { useContext, useEffect } from "react";
 import TopPosts from "../components/TopPosts";
 import LatestPosts from "../components/LatestPosts";
 import JobNewsSection from "../components/JobNewsSection";
-import ScienceNewsSection from "../components/ScienceNewsSection";
 import Search from "../components/Search";
 import { BlogContext } from "../contexts/BlogContext";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
 import Loading from "../components/Loading";
 import { Helmet } from "react-helmet";
+import EducationNewsSection from "../components/EducationNewsSection";
 
 const Home = () => {
   const { posts, searchTerm, loading, setLoading } = useContext(BlogContext);
@@ -90,7 +90,7 @@ const Home = () => {
           <TopPosts />
           <LatestPosts />
           <JobNewsSection />
-          <ScienceNewsSection />
+          <EducationNewsSection />
         </>
       )}
     </div>

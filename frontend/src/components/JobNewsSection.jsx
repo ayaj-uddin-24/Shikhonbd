@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BlogContext } from "../contexts/BlogContext";
 import PostItem from "./PostItem";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const JobNewsSection = () => {
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -12,20 +14,25 @@ const JobNewsSection = () => {
       const filtered = posts.filter((post) =>
         categories.includes(post.category)
       );
-      setFilteredPosts(filtered);
+      setFilteredPosts(filtered.slice(-6));
     }
   }, [posts]);
 
   return (
     <section
-      className="container mx-auto p-4"
+      className="container mx-auto p-4 mt-4"
       aria-labelledby="job-news-header"
     >
       {/* Header */}
       <header className="border-b-2 pb-2 mb-4 flex items-center">
-        <h2 id="job-news-header" className="text-lg font-bold">
-          চাকরির খবর
-        </h2>
+        <Link
+          to="/চাকরির খবর"
+          id="job-news-header"
+          className="text-lg font-bold flex items-center gap-3"
+        >
+          <span>চাকরির খবর</span>
+          <FaArrowRightLong size={25} />
+        </Link>
       </header>
 
       {/* Job News Grid */}

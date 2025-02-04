@@ -9,6 +9,8 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import JobPage from "./pages/JobPage";
+import EducationPage from "./pages/EducationPage";
 export const url = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
@@ -47,6 +49,8 @@ const App = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/:category" element={<CategoryPosts />} />
         <Route path="/post/:title" element={<Post />} />
+        <Route path="/চাকরির খবর" element={<JobPage />} />
+        <Route path="/শিক্ষাক্রম" element={<EducationPage />} />
       </Routes>
 
       {isVisible && (

@@ -14,7 +14,7 @@ const LatestPosts = () => {
 
   return (
     <section
-      className="container mx-auto p-4 mt-5"
+      className="container mx-auto p-4"
       aria-labelledby="latest-posts-header"
     >
       {/* Header */}
